@@ -15389,8 +15389,10 @@ angular.module('material.components.toolbar', [
  *
  * @param {boolean=} md-scroll-shrink Whether the header should shrink away as
  * the user scrolls down, and reveal itself as the user scrolls up.
+ *
  * _**Note (1):** for scrollShrink to work, the toolbar must be a sibling of a
  * `md-content` element, placed before it. See the scroll shrink demo._
+ *
  * _**Note (2):** The `md-scroll-shrink` attribute is only parsed on component
  * initialization, it does not watch for scope changes._
  *
@@ -15425,6 +15427,7 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate) {
         var y = 0;
         var prevScrollTop = 0;
         var shrinkSpeedFactor = attr.mdShrinkSpeedFactor || 0.5;
+        var shrinkY = 0;
 
         var debouncedContentScroll = $$rAF.throttle(onContentScroll);
         var debouncedUpdateHeight = $mdUtil.debounce(updateToolbarHeight, 5 * 1000);
@@ -15491,6 +15494,8 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate) {
          */
         function onContentScroll(e) {
           var scrollTop = e ? e.target.scrollTop : prevScrollTop;
+          var elementY;
+          var maxShrink
 
           debouncedUpdateHeight();
 
@@ -15499,7 +15504,18 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate) {
             Math.max(0, y + scrollTop - prevScrollTop)
           );
 
-          element.css($mdConstant.CSS.TRANSFORM, translateY([-y * shrinkSpeedFactor]));
+          elementY = -y * shrinkSpeedFactor;
+
+          if (angular.isDefined(attr.mdScrollShrinkFixed)) {
+            maxShrink = parseInt(attr.mdScrollShrinkFixed) || 64;
+            shrinkY = Math.min(
+              maxShrink / shrinkSpeedFactor,
+              Math.max(0, shrinkY + scrollTop - prevScrollTop)
+            );
+            elementY = -shrinkY * shrinkSpeedFactor;
+          }
+
+          element.css($mdConstant.CSS.TRANSFORM, translateY([elementY]));
           contentElement.css($mdConstant.CSS.TRANSFORM, translateY([(toolbarHeight - y) * shrinkSpeedFactor]));
 
           prevScrollTop = scrollTop;
