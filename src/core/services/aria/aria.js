@@ -7,10 +7,16 @@ angular.module('material.core')
  */
 function AriaService($$rAF, $log, $window) {
 
+  // return {
+  //   expect: expect,
+  //   expectAsync: expectAsync,
+  //   expectWithText: expectWithText
+  // };
+
   return {
-    expect: expect,
-    expectAsync: expectAsync,
-    expectWithText: expectWithText
+    expect: angular.noop,
+    expectAsync: angular.noop,
+    expectWithText: angular.noop
   };
 
   /**

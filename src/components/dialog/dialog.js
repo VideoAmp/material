@@ -443,7 +443,7 @@ function MdDialogProvider($$interimElementProvider) {
       clickOutsideToClose: false,
       escapeToClose: true,
       targetEvent: null,
-      focusOnOpen: true,
+      focusOnOpen: false,
       disableParentScroll: true,
       transformTemplate: function (template) {
         return '<div class="md-dialog-container">' + template + '</div>';

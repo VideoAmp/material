@@ -185,9 +185,9 @@ function MenuProvider($$interimElementProvider) {
         opts.menuContentEl[0].addEventListener('click', captureClickListener, true);
 
         // kick off initial focus in the menu on the first element
-        var focusTarget = opts.menuContentEl[0].querySelector('[md-menu-focus-target]');
-        if (!focusTarget) focusTarget = opts.menuContentEl[0].firstElementChild.firstElementChild;
-        focusTarget.focus();
+        // var focusTarget = opts.menuContentEl[0].querySelector('[md-menu-focus-target]');
+        // if (!focusTarget) focusTarget = opts.menuContentEl[0].firstElementChild.firstElementChild;
+        // focusTarget.focus();
 
         return function cleanupInteraction() {
           element.removeClass('md-clickable');
