@@ -220,7 +220,7 @@ function MenuProvider($$interimElementProvider) {
           focusTarget = firstChild.querySelector('[tabindex]') || firstChild.firstElementChild;
         }
 
-        focusTarget && focusTarget.focus();
+        //focusTarget && focusTarget.focus();
 
         return function cleanupInteraction() {
           element.removeClass('md-clickable');

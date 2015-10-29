@@ -1249,7 +1249,7 @@ function AriaService($$rAF, $log, $window) {
       if (defaultValue.length) {
         element.attr(attrName, defaultValue);
       } else {
-        $log.warn('ARIA: Attribute "', attrName, '", required for accessibility, is missing on node:', node);
+        //$log.warn('ARIA: Attribute "', attrName, '", required for accessibility, is missing on node:', node);
       }
 
     }
@@ -8522,7 +8522,7 @@ function MdDialogProvider($$interimElementProvider) {
       clickOutsideToClose: false,
       escapeToClose: true,
       targetEvent: null,
-      focusOnOpen: true,
+      focusOnOpen: false,
       disableParentScroll: true,
       transformTemplate: function(template) {
         return '<div class="md-dialog-container">' + validatedTemplate(template) + '</div>';
@@ -20240,7 +20240,7 @@ function MenuProvider($$interimElementProvider) {
           focusTarget = firstChild.querySelector('[tabindex]') || firstChild.firstElementChild;
         }
 
-        focusTarget && focusTarget.focus();
+        //focusTarget && focusTarget.focus();
 
         return function cleanupInteraction() {
           element.removeClass('md-clickable');
