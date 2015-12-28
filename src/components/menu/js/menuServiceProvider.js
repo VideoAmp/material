@@ -217,7 +217,7 @@ function MenuProvider($$interimElementProvider) {
           focusTarget = firstChild && (firstChild.querySelector('.md-button:not([disabled])') || firstChild.firstElementChild);
         }
 
-        focusTarget && focusTarget.focus();
+        // focusTarget && focusTarget.focus();
 
         return function cleanupInteraction() {
           element.removeClass('md-clickable');

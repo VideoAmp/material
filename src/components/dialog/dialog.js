@@ -525,7 +525,7 @@ function MdDialogProvider($$interimElementProvider) {
       targetEvent: null,
       closeTo: null,
       openFrom: null,
-      focusOnOpen: true,
+      focusOnOpen: false,
       disableParentScroll: true,
       autoWrap: true,
       fullscreen: false,
